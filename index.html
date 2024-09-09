@@ -1,0 +1,61 @@
+<!--
+Programa: Círculos no Canvas
+Nome: Eduardo Rodrigues - Nº: 06 Turma: 2B
+Nome: Enzo - Nº: 07
+Nome: Gabriel - Nº:09
+DESCRIÇÃO: O nosso código faz com que os círculos amarelo e azul se movimentem um em direção ao outro e se cruzem no meio.
+-->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<meta charset="UTF-8">
+<head>
+    <title>Círculos no Canvas</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="600" height="400" style="border:1px solid black;"></canvas>
+    
+    <!--Início do Script do Canvas-->
+    
+    <script>
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+
+        //Coordenadas iniciais dos círculos
+        var yellowX = 70;
+        var yellowY = 50;
+        var blueX = 530;
+        var blueY = 350;
+
+        //Função para desenhar e animar os círculos
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'yellow';
+            ctx.beginPath();
+            ctx.arc(yellowX, yellowY, 30, 0, 2*Math.PI);
+            ctx.fill();
+            ctx.fillStyle = 'blue';
+            ctx.beginPath();
+            ctx.arc(blueX, blueY, 30, 0, 2*Math.PI);
+            ctx.fill();
+
+        //Atualiza as coordenadas dos círculos
+            yellowX += 3;
+            yellowY += 2;
+            blueX -= 3;
+            blueY -= 2;
+
+         //Verifica se os círculos ainda estão dentro dos limites do canvas
+            if (yellowX < canvas.width && yellowY < canvas.height && blueX > 0 && blueY > 0) {
+              
+        //Chama a função draw novamente para animar
+                requestAnimationFrame(draw);
+            }
+        }
+        
+        //Inicia a animação
+        draw();
+    </script>
+    <!--Fim do Script do Canvas-->
+</body>
+</html>
